@@ -51,7 +51,6 @@ class Task {
             int taskID = Integer.parseInt(taskRow[0]);
             String taskType = taskRow[3];
             String taskCourse = taskRow[4];
-
             // Create new Task objects (or GradingAssignment / TeachingSection based on task type)
             Task task = new Task(taskID, taskType, taskCourse);
             TaskList.addTask(task);

@@ -39,7 +39,7 @@ abstract class Graduate {
             else {
                 System.out.println("Error: No category found");
             }
-            GraduateList.addGraduate(graduate);
+            //GraduateList.addGraduate(graduate);
         }
     }
     // Abstract method to get salary based on category

@@ -18,6 +18,7 @@ public class Main {
             System.out.println(studentData);
             System.out.println(surveyData);
             System.out.println(taskData);
+            /*
 
             // Initialize GraduateList, TaskList, and ProficiencyLevel
             GraduateList graduateList = new GraduateList();
@@ -70,6 +71,8 @@ public class Main {
                     System.out.println("No graduate found with this ID.");
                 }
             }
+
+             */
 
         } catch (Exception e) {
             e.printStackTrace();

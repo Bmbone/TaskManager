@@ -4,8 +4,8 @@ import java.util.List;
 class GradingAssignment extends Task {
     private List<Float> gradesList;
 
-    public GradingAssignment(String taskName, int taskID, String taskProficiency) {
-        super(taskName, taskID, taskProficiency);
+    public GradingAssignment(int taskID, String taskType, String taskCourse) {
+        super(taskID, taskType, taskCourse);
         this.gradesList = new ArrayList<>();
     }
 

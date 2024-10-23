@@ -46,8 +46,8 @@ class CSV {
                 writer.write(graduate.getID() + delimiter +
                         graduate.getGraduateName() + delimiter +
                         task.getTaskID() + delimiter +
-                        task.getTaskName() + delimiter +
-                        task.getTaskProficiency() + "\n");
+                        task.getTaskType() + delimiter +
+                        task.getTaskCourse() + "\n");
             }
 
             System.out.println("Task assignments written to file: " + filePath);

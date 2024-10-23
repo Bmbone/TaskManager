@@ -1,8 +1,8 @@
 class TeachingSection extends Task {
     private int totalStudentsAttended;
 
-    public TeachingSection(String taskName, int taskID, String taskProficiency) {
-        super(taskName, taskID, taskProficiency);
+    public TeachingSection(int taskID, String taskType, String taskCourse) {
+        super(taskID, taskType, taskCourse);
         this.totalStudentsAttended = 0;
     }
 
