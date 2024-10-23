@@ -14,7 +14,7 @@ public class GraduateList {
     }
 
     // Adjusted createGraduates method
-    public static void createGraduates(ArrayList<String[]> studentData, ArrayList<String[]> surveyData, ProficiencyLevel proficiencyLevel, GraduateList graduateList) {
+    public void createGraduates(ArrayList<String[]> studentData) {
         for (String[] studentRow : studentData) {
             int id = Integer.parseInt(studentRow[0]); // Correct index for ID
             String name = studentRow[1];              // Correct index for name

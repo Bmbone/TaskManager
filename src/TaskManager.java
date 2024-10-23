@@ -18,9 +18,6 @@ class TaskManager {
 
     // Method to assign tasks and write the results to a CSV file
     public void assignTasks(String outputPath) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath))) {
-            writer.write("GraduateID,GraduateName,TaskID,TaskName,Proficiency\n"); // CSV header
-
             for (Task task : tasks) {
                 if (task.isAssigned()) {
                     continue;  // Skip tasks that are already assigned
@@ -29,19 +26,18 @@ class TaskManager {
                 Graduate assignedGraduate = findEligibleGraduateForTask(task);
 
                 if (assignedGraduate != null) {
-                    task.assignTask();
                     taskMapping.assignTask(assignedGraduate, task);
 
                     // Write the assignment to the CSV file
                     writer.write(assignedGraduate.getID() + "," +
                             assignedGraduate.getGraduateName() + "," +
                             task.getTaskID() + "," +
-                            task.getTaskName() + "," +
-                            task.getTaskProficiency() + "\n");
+                            task.getTaskType() + "," +
+                            task.getTaskCourse() + "\n");
 
-                    System.out.println("Assigned task: " + task.getTaskName() + " to " + assignedGraduate.getGraduateName());
+                    System.out.println("Assigned task: " + task.getTaskType() + " to " + assignedGraduate.getGraduateName());
                 } else {
-                    System.out.println("No eligible graduate found for task: " + task.getTaskName());
+                    System.out.println("No eligible graduate found for task: " + task.getTaskType());
                 }
             }
 
@@ -78,7 +74,7 @@ class TaskManager {
         }
 
         // Use ProficiencyLevel to check if the graduate has Advanced or Expert proficiency in the course required by the task
-        String requiredCourse = task.getTaskProficiency();
+        String requiredCourse = task.getTaskCourse();
         return proficiencyLevel.isAdvancedOrExpert(graduate, requiredCourse);
     }
 

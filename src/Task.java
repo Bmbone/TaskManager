@@ -53,7 +53,7 @@ class Task {
             String taskCourse = taskRow[4];
             // Create new Task objects (or GradingAssignment / TeachingSection based on task type)
             Task task = new Task(taskID, taskType, taskCourse);
-            TaskList.addTask(task);
+            //TaskList.addTask(task);
         }
     }
 }

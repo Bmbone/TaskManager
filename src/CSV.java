@@ -12,7 +12,7 @@ class CSV {
     }
 
     // Reads the CSV file and returns a list of string arrays representing rows
-    public List<String[]> readCSV() throws IOException {
+    public ArrayList<String[]> readCSV() throws IOException {
         List<String[]> data = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;

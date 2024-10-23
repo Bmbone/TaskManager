@@ -36,4 +36,16 @@ class TaskList {
             System.out.println(task.getTaskType());
         }
     }
+    // Method to create tasks from CSV data (non-static)
+    public void createTasks(ArrayList<String[]> taskData) {
+        for (String[] taskRow : taskData) {
+            int taskID = Integer.parseInt(taskRow[0]);  // Task ID (assuming index 0)
+            String taskType = taskRow[3];               // Task Name (assuming index 1)
+            String taskCourse = taskRow[4];        // Required Proficiency (assuming index 2)
+
+            // Create a new Task object and add it to the task list
+            Task task = new Task(taskID, taskType, taskCourse);
+            this.addTask(task);
+        }
+    }
 }
