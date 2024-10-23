@@ -24,7 +24,7 @@ public class Main {
             TaskList taskList = new TaskList();
             ProficiencyLevel proficiencyLevel = new ProficiencyLevel();  // To track graduate proficiency
             // Create graduates based on CSV data and store their proficiencies
-            graduateList.createGraduates(surveyData);
+            graduateList.createGraduates(studentData, surveyData);
             // Create tasks based on CSV data
             taskList.createTasks(taskData);
             // Create the TaskManager with graduates, tasks, and proficiency levels
@@ -37,9 +37,8 @@ public class Main {
             if (option == 1) {
                 // Run automated task matching
                 taskManager.assignTasks();
-
                 // Write the assigned tasks to sheet4 using the CSV class
-                assignedTasksCSV.writeAssignedTasks(taskManager.getTaskMapping());
+                assignedTasksCSV.writeAssignedTasks(taskMapping.getTaskMapping());
 
             } else if (option == 2) {
                 // Mark task as completed

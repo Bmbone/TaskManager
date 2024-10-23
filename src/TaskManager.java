@@ -17,7 +17,7 @@ class TaskManager {
     }
 
     // Method to assign tasks and write the results to a CSV file
-    public void assignTasks(String outputPath) {
+    public void assignTasks() {
             for (Task task : tasks) {
                 if (task.isAssigned()) {
                     continue;  // Skip tasks that are already assigned
@@ -27,24 +27,12 @@ class TaskManager {
 
                 if (assignedGraduate != null) {
                     taskMapping.assignTask(assignedGraduate, task);
-
-                    // Write the assignment to the CSV file
-                    writer.write(assignedGraduate.getID() + "," +
-                            assignedGraduate.getGraduateName() + "," +
-                            task.getTaskID() + "," +
-                            task.getTaskType() + "," +
-                            task.getTaskCourse() + "\n");
-
-                    System.out.println("Assigned task: " + task.getTaskType() + " to " + assignedGraduate.getGraduateName());
+                    System.out.println("Assigned task: " + task.getTaskType() + " " + task.getTaskCourse() + " to " + assignedGraduate.getGraduateName());
                 } else {
-                    System.out.println("No eligible graduate found for task: " + task.getTaskType());
+                    System.out.println("No eligible graduate found for task: " + task.getTaskType() + " " + task.getTaskCourse());
                 }
             }
-
-            System.out.println("Task assignment complete. Results written to: " + outputPath);
-        } catch (IOException e) {
-            System.err.println("Error writing to CSV file: " + e.getMessage());
-        }
+            System.out.println("Task assignment complete");
     }
 
     // Find an eligible graduate for the task (prioritizing GraduateCat2)

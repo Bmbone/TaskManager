@@ -14,7 +14,7 @@ public class GraduateList {
     }
 
     // Adjusted createGraduates method
-    public void createGraduates(ArrayList<String[]> studentData) {
+    public void createGraduates(ArrayList<String[]> studentData, ArrayList<String[]> surveyData) {
         for (String[] studentRow : studentData) {
             int id = Integer.parseInt(studentRow[0]); // Correct index for ID
             String name = studentRow[1];              // Correct index for name
@@ -30,10 +30,9 @@ public class GraduateList {
                 System.out.println("Error: No category found for graduate " + name);
                 continue;
             }
-
             // Add the graduate to the graduate list
-            graduateList.addGraduate(graduate);
-
+            addGraduate(graduate);
+            ProficiencyLevel proficiencyLevel = new ProficiencyLevel();
             // Add/update the graduate's proficiency in courses based on survey data
             for (String[] surveyRow : surveyData) {
                 if (Integer.parseInt(surveyRow[0]) == id) {
