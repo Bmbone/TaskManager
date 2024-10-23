@@ -4,10 +4,10 @@ public class Main {
     public static void main(String[] args) {
         try {
             // Initialize CSV readers for students and tasks
-            CSV studentCSV = new CSV("sheet1_studentsInfo.csv", ",");
-            CSV surveyCSV = new CSV("sheet2_studentsSurveyResults.csv", ",");
-            CSV taskCSV = new CSV("sheet3_taskOpenings.csv", ",");
-            CSV assignedTasksCSV = new CSV("sheet4_assignedTasks.csv", ",");
+            CSV studentCSV = new CSV("src/sheet1_studentsInfo.csv", ",");
+            CSV surveyCSV = new CSV("src/sheet2_studentsSurveyResults.csv", ",");
+            CSV taskCSV = new CSV("src/sheet3_taskOpenings.csv", ",");
+            CSV assignedTasksCSV = new CSV("src/sheet4_assignedTasks.csv", ",");
 
             // Read CSV data
             ArrayList<String[]> studentData = studentCSV.readCSV();
@@ -37,8 +37,9 @@ public class Main {
             if (option == 1) {
                 // Run automated task matching
                 taskManager.assignTasks();
-                // Write the assigned tasks to sheet4 using the CSV class
-                assignedTasksCSV.writeAssignedTasks(taskMapping.getTaskMapping());
+                TaskMapping taskMapping = new TaskMapping()
+;                // Write the assigned tasks to sheet4 using the CSV class
+                assignedTasksCSV.writeAssignedTasks(taskMapping.getMapGradTask());
 
             } else if (option == 2) {
                 // Mark task as completed
@@ -65,8 +66,6 @@ public class Main {
                     System.out.println("No graduate found with this ID.");
                 }
             }
-
-             */
 
         } catch (Exception e) {
             e.printStackTrace();

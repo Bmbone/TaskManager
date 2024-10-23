@@ -44,16 +44,5 @@ class Task {
     public boolean isComplete() {
         return taskCompletion.getCompleteStatus();
     }
-    public static void createTasks(List<String[]> taskData){
-        // Parse task data to create Task objects
-        List<Task> tasks = new ArrayList<>();
-        for (String[] taskRow : taskData) {
-            int taskID = Integer.parseInt(taskRow[0]);
-            String taskType = taskRow[3];
-            String taskCourse = taskRow[4];
-            // Create new Task objects (or GradingAssignment / TeachingSection based on task type)
-            Task task = new Task(taskID, taskType, taskCourse);
-            //TaskList.addTask(task);
-        }
+
     }
-}

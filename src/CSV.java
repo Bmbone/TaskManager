@@ -33,16 +33,17 @@ class CSV {
         writer.close();
     }
 
-    // Method to write the assigned tasks to sheet4_assignedTasks.csv
-    public void writeAssignedTasks(TaskMapping taskMapping) {
+    // Method to write graduate-task assignments to a CSV file (now accepts a Map<Graduate, Task>)
+    public void writeAssignedTasks(Map<Graduate, Task> graduateTaskMap) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write("GraduateID,GraduateName,TaskID,TaskName,Proficiency\n"); // CSV header
 
             // Iterate over the map of graduate-task assignments and write to the file
-            for (Map.Entry<Graduate, Task> entry : taskMapping.getMapGradTask().entrySet()) {
+            for (Map.Entry<Graduate, Task> entry : graduateTaskMap.entrySet()) {
                 Graduate graduate = entry.getKey();
                 Task task = entry.getValue();
 
+                // Write the data for each graduate-task assignment to the CSV
                 writer.write(graduate.getID() + delimiter +
                         graduate.getGraduateName() + delimiter +
                         task.getTaskID() + delimiter +

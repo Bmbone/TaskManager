@@ -16,9 +16,9 @@ public class GraduateList {
     // Adjusted createGraduates method
     public void createGraduates(ArrayList<String[]> studentData, ArrayList<String[]> surveyData) {
         for (String[] studentRow : studentData) {
-            int id = Integer.parseInt(studentRow[0]); // Correct index for ID
-            String name = studentRow[1];              // Correct index for name
-            String category = studentRow[2];          // Correct index for category
+            int id = Integer.parseInt(studentRow[1]); // Correct index for ID
+            String name = studentRow[2];              // Correct index for name
+            String category = studentRow[7];          // Correct index for category
 
             // Create the graduate based on category
             Graduate graduate;
@@ -35,7 +35,7 @@ public class GraduateList {
             ProficiencyLevel proficiencyLevel = new ProficiencyLevel();
             // Add/update the graduate's proficiency in courses based on survey data
             for (String[] surveyRow : surveyData) {
-                if (Integer.parseInt(surveyRow[0]) == id) {
+                if (Integer.parseInt(surveyRow[1]) == id) {
                     String course = surveyRow[1];
                     String proficiency = surveyRow[2];
                     proficiencyLevel.addOrUpdateProficiency(graduate, course, proficiency);
