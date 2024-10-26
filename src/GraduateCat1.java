@@ -4,7 +4,7 @@ import java.util.Map;
 class GraduateCat1 extends Graduate {
     private static final float SALARY = 500.0f;
 
-    public GraduateCat1(String graduateName, int ID, Map<String, String> proficiencyLevels) {
+    public GraduateCat1(String graduateName, int ID, ProficiencyLevel[] proficiencyLevels) {
         super(graduateName, ID, proficiencyLevels);
     }
     public GraduateCat1(String graduateName, int ID) {

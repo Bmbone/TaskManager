@@ -38,7 +38,7 @@ class TaskList {
     }
     // Method to create tasks from CSV data (non-static)
     public void createTasks(ArrayList<String[]> taskData) {
-        for (String[] taskRow : taskData) {
+        for (String[] taskRow : taskData.subList(1, taskData.size())) {
             int taskID = Integer.parseInt(taskRow[0]);  // Task ID (assuming index 0)
             String taskType = taskRow[3];               // Task Name (assuming index 1)
             String taskCourse = taskRow[4];        // Required Proficiency (assuming index 2)

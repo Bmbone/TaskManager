@@ -6,13 +6,11 @@ import java.util.List;
 class TaskManager {
     private List<Graduate> graduates;
     private List<Task> tasks;
-    private ProficiencyLevel proficiencyLevel;  // Proficiency level map
     private TaskMapping taskMapping;
 
     public TaskManager(List<Graduate> graduates, List<Task> tasks, ProficiencyLevel proficiencyLevel) {
         this.graduates = graduates;
         this.tasks = tasks;
-        this.proficiencyLevel = proficiencyLevel;  // Initialize with proficiency levels
         this.taskMapping = new TaskMapping();
     }
 
@@ -63,7 +61,7 @@ class TaskManager {
 
         // Use ProficiencyLevel to check if the graduate has Advanced or Expert proficiency in the course required by the task
         String requiredCourse = task.getTaskCourse();
-        return proficiencyLevel.isAdvancedOrExpert(graduate, requiredCourse);
+        return graduate.isEligibleForTask(requiredCourse);
     }
 
     // Method to find a graduate by their student ID (used in feature #2)
@@ -79,5 +77,9 @@ class TaskManager {
     // Method to get the task assigned to a particular graduate
     public Task getTaskForGraduate(Graduate graduate) {
         return taskMapping.getMapGradTask().get(graduate);
+    }
+
+    public TaskMapping getTaskMapping() {
+        return taskMapping;
     }
 }

@@ -8,16 +8,12 @@ public class Main {
             CSV surveyCSV = new CSV("src/sheet2_studentsSurveyResults.csv", ",");
             CSV taskCSV = new CSV("src/sheet3_taskOpenings.csv", ",");
             CSV assignedTasksCSV = new CSV("src/sheet4_assignedTasks.csv", ",");
+            CSV completedTasksCSV = new CSV("src/sheet5_completedTasks.csv", ",");
 
             // Read CSV data
             ArrayList<String[]> studentData = studentCSV.readCSV();
             ArrayList<String[]> surveyData = surveyCSV.readCSV();
             ArrayList<String[]> taskData = taskCSV.readCSV();
-
-            // Print the CSV data (for debugging purposes)
-            System.out.println(studentData);
-            System.out.println(surveyData);
-            System.out.println(taskData);
 
             // Initialize GraduateList, TaskList, and ProficiencyLevel
             GraduateList graduateList = new GraduateList();
@@ -37,12 +33,12 @@ public class Main {
             if (option == 1) {
                 // Run automated task matching
                 taskManager.assignTasks();
-                TaskMapping taskMapping = new TaskMapping()
-;                // Write the assigned tasks to sheet4 using the CSV class
+                TaskMapping taskMapping = taskManager.getTaskMapping();
                 assignedTasksCSV.writeAssignedTasks(taskMapping.getMapGradTask());
 
             } else if (option == 2) {
                 // Mark task as completed
+                taskManager.assignTasks();
                 System.out.println("Enter your student ID:");
                 int studentID = scanner.nextInt();
                 Graduate graduate = taskManager.getGraduateByID(studentID);
@@ -55,6 +51,9 @@ public class Main {
                         String input = scanner.nextLine();
                         if ("complete".equalsIgnoreCase(input)) {
                             assignedTask.markTaskAsCompleted();
+                            System.out.println("Enter remarks (if any):");
+
+                            completedTasksCSV.writeCompletedTask(assignedTask, studentID, scanner.nextLine());
                             System.out.println("Task has been marked as completed.");
                         } else {
                             System.out.println("Task was not marked as completed.");

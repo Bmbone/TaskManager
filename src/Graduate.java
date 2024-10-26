@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -6,9 +7,9 @@ abstract class Graduate {
     protected String graduateName;
     protected int ID;
     protected String category;
-    protected Map<String, String> proficiencyLevels; // Maps subject to proficiency level
+    protected ProficiencyLevel[] proficiencyLevels; // Maps subject to proficiency level
 
-    public Graduate(String graduateName, int ID, Map<String, String> proficiencyLevels) {
+    public Graduate(String graduateName, int ID, ProficiencyLevel[] proficiencyLevels) {
         this.graduateName = graduateName;
         this.ID = ID;
         this.proficiencyLevels = proficiencyLevels;
@@ -21,11 +22,15 @@ abstract class Graduate {
 
     public String getGraduateName() { return graduateName; }
     public int getID() { return ID; }
-    public boolean isEligibleForTask(String taskProficiency) {
-        String proficiency = proficiencyLevels.getOrDefault(taskProficiency, "Not familiar");
-        return proficiency.equals("Advanced") || proficiency.equals("Expert");
+    public boolean isEligibleForTask(String course) {
+        for (int i = 0; i < proficiencyLevels.length; i++) {
+            if(proficiencyLevels[i].getCourse().compareToIgnoreCase(course) == 0){
+                return proficiencyLevels[i].isAdvancedOrExpert();
+            }
+        }
+        return false;
     }
-    public static void createGraduates(List<String[]> studentData) {
+    public void createGraduates(List<String[]> studentData) {
         for (String[] studentRow : studentData) {
             int id = Integer.parseInt(studentRow[1]);
             String name = studentRow[2];
@@ -44,4 +49,20 @@ abstract class Graduate {
     }
     // Abstract method to get salary based on category
     public abstract float getSalary();
+
+    public void addUpdateProf(ProficiencyLevel profLevel){
+        for (int i = 0; i < proficiencyLevels.length; i++) {
+            if(proficiencyLevels[i].getCourse().compareToIgnoreCase(profLevel.getCourse()) == 0){
+                proficiencyLevels[i] = profLevel;
+                return;
+            }
+        }
+        ProficiencyLevel[] newLevels = Arrays.copyOf(proficiencyLevels, proficiencyLevels.length+1);
+        newLevels[proficiencyLevels.length] = profLevel;
+        setProficiencyLevels(newLevels);
+    }
+
+    private void setProficiencyLevels(ProficiencyLevel[] profLevels){
+        proficiencyLevels = profLevels;
+    }
 }

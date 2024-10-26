@@ -23,16 +23,6 @@ class CSV {
         return data;
     }
 
-    // Writes the data to a CSV file
-    public void writeCSV(List<String[]> data) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
-        for (String[] row : data) {
-            writer.write(String.join(delimiter, row));
-            writer.newLine();
-        }
-        writer.close();
-    }
-
     // Method to write graduate-task assignments to a CSV file (now accepts a Map<Graduate, Task>)
     public void writeAssignedTasks(Map<Graduate, Task> graduateTaskMap) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
@@ -51,6 +41,17 @@ class CSV {
                         task.getTaskCourse() + "\n");
             }
 
+            System.out.println("Task assignments written to file: " + filePath);
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
+    }
+
+    public void writeCompletedTask(Task task, int studentId, String remarks){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            if( remarks.isEmpty())
+                writer.write(task.getTaskID() + "," + studentId + "," + "complete\n"); // CSV header
+            else writer.write(task.getTaskID() + "," + studentId + "," + remarks+"\n");
             System.out.println("Task assignments written to file: " + filePath);
         } catch (IOException e) {
             System.err.println("Error writing to file: " + e.getMessage());
